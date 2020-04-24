@@ -1,7 +1,7 @@
 import telebot
 import settings
 import os
-from telega_bot.qiwi import qiwi
+from qiwi import qiwi
 
 
 TOKEN = settings.TOKKEN

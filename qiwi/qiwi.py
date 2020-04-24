@@ -1,6 +1,6 @@
 import requests
 import json
-import telega_bot.settings as settings
+import settings
 
 api_access_token = settings.api_qiwi_token
 mylogin = settings.qiwi_login
