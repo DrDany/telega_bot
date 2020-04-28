@@ -20,9 +20,6 @@ def get_profile(api_access_token):
 profile = get_profile(api_access_token)
 
 
-# print(profile)
-
-
 # История платежей - последние и следующие n платежей
 def payment_history_last(my_login, api_access_token, rows_num, next_TxnId, next_TxnDate):
     s = requests.Session()
@@ -32,33 +29,15 @@ def payment_history_last(my_login, api_access_token, rows_num, next_TxnId, next_
     return h.json()
 
 
-# последние 100 платежей
-lastPayments = payment_history_last(mylogin, api_access_token, '4', '', '')
+def get_payment(user_telegram_id):
+    last_payments = payment_history_last(mylogin, api_access_token, 10, '', '')
+    payments = last_payments.get('data')
+    for payment in payments:
+        comment = payment.get('comment')
+        if comment == str(user_telegram_id):
+            payment_sum = payment.get('sum')
+            payment_sum_amount = payment_sum.get('amount')
+            return payment_sum_amount
 
-
-def get_payment(count_payment):
-    lastPayments = payment_history_last(mylogin, api_access_token, count_payment, '', '')
-    data = lastPayments.get('data')[0]
-    comment = data.get('comment')
-    payment_sum = data.get('sum')
-    payment_sum_amount = payment_sum.get('amount')
-    return payment_sum_amount
-
-
-#
-print(lastPayments)
-#
-# print(type(lastPayments.get('data')))
-#
-# print(type(lastPayments.get('data')[3]))
-#
-# data = lastPayments.get('data')[1]
-# print(data)
-# comment = data.get('comment')
-# payment_sum = data.get('sum')
-# payment_sum_amount = payment_sum.get('amount')
-#
-# print(comment)
-# print(payment_sum_amount)
-if __name__ == "__main__":
-    get_payment(1)
+# if __name__ == "__main__":
+#     get_payment(user_telegram_id)
