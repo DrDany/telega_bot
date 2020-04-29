@@ -1,5 +1,8 @@
 
 DROP TABLE IF EXISTS main.USERS;
 CREATE TABLE IF NOT EXISTS main.USERS
-(id INTEGER PRIMARY KEY AUTOINCREMENT, telegram_id INTEGER not null, name varchar(20) not null, balance integer);
+(id INTEGER PRIMARY KEY AUTOINCREMENT, telegram_id INTEGER not null, name varchar(20) not null, balance INTEGER not null);
 
+DROP TABLE IF EXISTS main.TICKETS;
+CREATE TABLE IF NOT EXISTS main.TICKETS
+(id INTEGER PRIMARY KEY AUTOINCREMENT, telegram_id INTEGER not null, value varchar(20) not null);

@@ -37,7 +37,6 @@ def handler_start(message):
     user_markup.row('Пополнить счет', 'Информация', 'Поддержка')
     bot.send_message(message.from_user.id, "Привет!", reply_markup=user_markup)
 
-
 @bot.message_handler(content_types=['text'])
 def handle_text(message):
     if message.text == "Информация":
@@ -81,12 +80,38 @@ def handle_text(message):
         payment_amount = balance + qiwi.get_payment(user_telegram_id)
         db_handler.add_balance(payment_amount, user_telegram_id)
         bot.send_message(message.from_user.id, "Баланс пополнен")
+    # БИЛЕТЫ
+    elif message.text == "50":
+        value = message.text
+        user_telegram_id = message.from_user.id
+        db_handler.add_ticket(value, user_telegram_id)
+        bot.send_message(message.from_user.id, "Билет добавлен")
+    elif message.text == "100":
+        value = message.text
+        user_telegram_id = message.from_user.id
+        db_handler.add_ticket(value, user_telegram_id)
+        bot.send_message(message.from_user.id, "Билет добавлен")
+    elif message.text == "200":
+        value = message.text
+        user_telegram_id = message.from_user.id
+        db_handler.add_ticket(value, user_telegram_id)
+        bot.send_message(message.from_user.id, "Билет добавлен")
+    elif message.text == "300":
+        value = message.text
+        user_telegram_id = message.from_user.id
+        db_handler.add_ticket(value, user_telegram_id)
+        bot.send_message(message.from_user.id, "Билет добавлен")
+    elif message.text == "500":
+        value = message.text
+        user_telegram_id = message.from_user.id
+        db_handler.add_ticket(value, user_telegram_id)
+        bot.send_message(message.from_user.id, "Билет добавлен")
     else:
         bot.send_message(message.from_user.id, "Нет такой команды.")
 
 
-balance = qiwi.get_payment()
-print(balance)
+# balance = qiwi.get_payment()
+# print(balance)
 
 # print(message.chat_id)
 bot.polling(none_stop=True, interval=0)
